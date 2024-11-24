@@ -24,5 +24,10 @@ spec:
         name: cluster11
         namespace: '{{.path.basename}}-10'
       syncPolicy:
+        automated:
+      selfHeal: true
         syncOptions:
-          - CreateNamespace=true
+        - CreateNamespace=true
+        - Validate=true
+        - PruneLast=false
+ 
