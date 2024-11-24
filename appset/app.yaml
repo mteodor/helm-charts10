@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: chart10-appset
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/mteodor/helm-charts10
+        revision: HEAD
+        directories:
+          - path: charts/*
+  template:
+    metadata:
+      name: '{{.path.basename}}-01'
+    spec:
+      project: 3eb96a4d
+      source:
+        repoURL: https://github.com/mteodor/helm-charts10
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        name: cluster11
+        namespace: '{{.path.basename}}-10'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
