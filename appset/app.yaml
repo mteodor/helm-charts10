@@ -13,7 +13,7 @@ spec:
           - path: charts/*
   template:
     metadata:
-      name: '{{.path.basename}}-01'
+      name: '{{.path.basename}}-10'
     spec:
       project: 3eb96a4d
       source:
